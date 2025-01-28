@@ -1,0 +1,34 @@
+{
+    "sourceFile": "Assets/Quit.cs",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1738085245807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738085950069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,5 +20,5 @@\n     void Update()\r\n     {\r\n         \r\n     }\r\n-}\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1738086120445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n using UnityEngine;\r\n+using System.Collections.Generic;\r\n+using UnityEngine.InputSystem;\r\n+using System.Collections\r\n \r\n public class Quitkey : MonoBehaviour\r\n {\r\n     // Start is called once before the first execution of Update after the MonoBehaviour is created\r\n"
+                },
+                {
+                    "date": 1738086154666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n using UnityEngine;\r\n using System.Collections.Generic;\r\n using UnityEngine.InputSystem;\r\n-using System.Collections\r\n+using System.Collections;\r\n \r\n public class Quitkey : MonoBehaviour\r\n {\r\n     // Start is called once before the first execution of Update after the MonoBehaviour is created\r\n"
+                },
+                {
+                    "date": 1738086196767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n using System.Collections;\r\n \r\n public class Quitkey : MonoBehaviour\r\n {\r\n+    public InputActionReference action;\r\n     // Start is called once before the first execution of Update after the MonoBehaviour is created\r\n     void Start()\r\n     {\r\n         action.action.Enable();\r\n"
+                }
+            ],
+            "date": 1738085245807,
+            "name": "Commit-0",
+            "content": "using UnityEngine;\r\n\r\npublic class Quitkey : MonoBehaviour\r\n{\r\n    // Start is called once before the first execution of Update after the MonoBehaviour is created\r\n    void Start()\r\n    {\r\n        action.action.Enable();\r\n        action.action.performed += (ctx) =>\r\n        {\r\n            # if UNITY_EDITOR\r\n                UnityEditor.EditorApplication.isPlaying = false;\r\n            # else\r\n                Application.Quit();\r\n            # endif\r\n        };\r\n    }\r\n\r\n    // Update is called once per frame\r\n    void Update()\r\n    {\r\n        \r\n    }\r\n}\r\n"
+        }
+    ]
+}

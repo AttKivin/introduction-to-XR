@@ -1,0 +1,22 @@
+{
+    "sourceFile": "Assets/Teleport.cs",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1738090662107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1738091663700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n using UnityEngine;\r\n-using UnityEngine.InputSystem;  // For new Input System\r\n+using UnityEngine.InputSystem;\r\n \r\n public class XRTeleportPlayer : MonoBehaviour\r\n {\r\n-    public Transform roomPosition;   // Assign XR Origin's starting position\r\n-    public Transform externalPosition; // Assign External Viewpoint\r\n+    public Transform roomPosition;   // XR Origin's starting position\r\n+    public Transform externalPosition; // External Viewpoint\r\n \r\n-    public InputActionReference switchAction; // Assign a button in Inspector\r\n+    public InputActionReference switchAction;\r\n \r\n     private bool isInRoom = true;  // Tracks location\r\n \r\n     void Start()\r\n@@ -25,7 +25,7 @@\n     }\r\n \r\n     private void OnDestroy()\r\n     {\r\n-        switchAction.action.performed -= TogglePosition; // Cleanup\r\n+        switchAction.action.performed -= TogglePosition;\r\n     }\r\n }\r\n"
+                }
+            ],
+            "date": 1738090662107,
+            "name": "Commit-0",
+            "content": "using UnityEngine;\r\nusing UnityEngine.InputSystem;  // For new Input System\r\n\r\npublic class XRTeleportPlayer : MonoBehaviour\r\n{\r\n    public Transform roomPosition;   // Assign XR Origin's starting position\r\n    public Transform externalPosition; // Assign External Viewpoint\r\n\r\n    public InputActionReference switchAction; // Assign a button in Inspector\r\n\r\n    private bool isInRoom = true;  // Tracks location\r\n\r\n    void Start()\r\n    {\r\n        switchAction.action.Enable();\r\n        switchAction.action.performed += TogglePosition;\r\n    }\r\n\r\n    void TogglePosition(InputAction.CallbackContext context)\r\n    {\r\n        // Switch between room and external viewpoint\r\n        isInRoom = !isInRoom;\r\n        transform.position = isInRoom ? roomPosition.position : externalPosition.position;\r\n        transform.rotation = isInRoom ? roomPosition.rotation : externalPosition.rotation;\r\n    }\r\n\r\n    private void OnDestroy()\r\n    {\r\n        switchAction.action.performed -= TogglePosition; // Cleanup\r\n    }\r\n}\r\n"
+        }
+    ]
+}
