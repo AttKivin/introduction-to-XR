@@ -1,0 +1,42 @@
+{
+    "sourceFile": "Assets/Scripts/MagnifyingGlass.cs",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1739207261981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1739207836709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,20 @@\n using UnityEngine;\r\n \r\n public class MagnifyingGlass : MonoBehaviour\r\n {\r\n-    public Camera lensCamera;\r\n+    public Material Clear;\r\n     public Transform lens;\r\n \r\n     void Update()\r\n     {\r\n         lensCamera.transform.position = lens.position;\r\n         lensCamera.transform.rotation = Quaternion.LookRotation(lens.forward);\r\n     }\r\n+    public void SetMatClear() {\r\n+        GetComponent<Renderer>().material = Clear;\r\n+    }\r\n+\r\n+    public void SetMatLens(){\r\n+        GetComponent<Renderer>().material = Mirror;\r\n+    }\r\n }\r\n"
+                },
+                {
+                    "date": 1739207842272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,9 @@\n     public Transform lens;\r\n \r\n     void Update()\r\n     {\r\n-        lensCamera.transform.position = lens.position;\r\n-        lensCamera.transform.rotation = Quaternion.LookRotation(lens.forward);\r\n+        \r\n     }\r\n     public void SetMatClear() {\r\n         GetComponent<Renderer>().material = Clear;\r\n     }\r\n"
+                },
+                {
+                    "date": 1739207919013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,7 +13,7 @@\n         GetComponent<Renderer>().material = Clear;\r\n     }\r\n \r\n     public void SetMatLens(){\r\n-        GetComponent<Renderer>().material = Mirror;\r\n+        GetComponent<Renderer>().material = lens;\r\n     }\r\n }\r\n"
+                },
+                {
+                    "date": 1739207946092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n public class MagnifyingGlass : MonoBehaviour\r\n {\r\n     public Material Clear;\r\n-    public Transform lens;\r\n+    public MAterial Mirror;\r\n \r\n     void Update()\r\n     {\r\n         \r\n@@ -13,7 +13,7 @@\n         GetComponent<Renderer>().material = Clear;\r\n     }\r\n \r\n     public void SetMatLens(){\r\n-        GetComponent<Renderer>().material = lens;\r\n+        GetComponent<Renderer>().material = Mirror;\r\n     }\r\n }\r\n"
+                },
+                {
+                    "date": 1739211292984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,12 @@\n using UnityEngine;\r\n \r\n-public class MagnifyingGlass : MonoBehaviour\r\n+public class MagnifyGlass: MonoBehaviour\r\n {\r\n-    public Material Clear;\r\n-    public MAterial Mirror;\r\n-\r\n+    public Camera mainCamera;\r\n+    public Camera lensCamera;\r\n     void Update()\r\n     {\r\n-        \r\n+        lensCamera.transform.position = mainCamera.transform.position;\r\n+        lensCamera.transform.rotation = Quaternion.Euler(0, mainCamera.transform.rotation.eulerAngles.y, 0);\r\n     }\r\n-    public void SetMatClear() {\r\n-        GetComponent<Renderer>().material = Clear;\r\n-    }\r\n-\r\n-    public void SetMatLens(){\r\n-        GetComponent<Renderer>().material = Mirror;\r\n-    }\r\n }\r\n"
+                },
+                {
+                    "date": 1739223185876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,19 @@\n using UnityEngine;\r\n \r\n-public class MagnifyGlass: MonoBehaviour\r\n+public class LensCameraController : MonoBehaviour\r\n {\r\n     public Camera mainCamera;\r\n-    public Camera lensCamera;\r\n+    public Camera lensCamera1; \r\n+    public Camera lensCamera2; \r\n+\r\n     void Update()\r\n     {\r\n-        lensCamera.transform.position = mainCamera.transform.position;\r\n-        lensCamera.transform.rotation = Quaternion.Euler(0, mainCamera.transform.rotation.eulerAngles.y, 0);\r\n+        // Copy the rotation of the main camera to the lens cameras\r\n+        Vector3 mainCameraRotation = mainCamera.transform.eulerAngles;\r\n+        \r\n+        // Here you can adjust if the lens should have some offset or exact mimic behavior\r\n+        // Adjusting y-axis rotation to match the viewing angle, keeping x and z zero for simplicity\r\n+        lensCamera1.transform.rotation = Quaternion.Euler(0, mainCameraRotation.y, 0);\r\n+        lensCamera2.transform.rotation = Quaternion.Euler(0, mainCameraRotation.y, 0);\r\n     }\r\n }\r\n"
+                }
+            ],
+            "date": 1739207261981,
+            "name": "Commit-0",
+            "content": "using UnityEngine;\r\n\r\npublic class MagnifyingGlass : MonoBehaviour\r\n{\r\n    public Camera lensCamera;\r\n    public Transform lens;\r\n\r\n    void Update()\r\n    {\r\n        lensCamera.transform.position = lens.position;\r\n        lensCamera.transform.rotation = Quaternion.LookRotation(lens.forward);\r\n    }\r\n}\r\n"
+        }
+    ]
+}

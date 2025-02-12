@@ -1,0 +1,18 @@
+{
+    "sourceFile": "Assets/PlanetRotation.cs",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1738089221204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1738089221204,
+            "name": "Commit-0",
+            "content": "using UnityEngine;\r\n\r\npublic class PlanetRotation : MonoBehaviour\r\n{\r\n    public float rotationSpeed = 15f; // Degrees per second\r\n\r\n    void Update()\r\n    {\r\n        // Rotate the planet around the Y-axis at a constant speed\r\n        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);\r\n    }\r\n}\r\n"
+        }
+    ]
+}
